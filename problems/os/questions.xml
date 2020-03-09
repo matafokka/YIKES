@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem>
+
+<name>Choosing OS</name>
+<description>This will help you choose OS for every need. No worthless systems here XD</description>
+
+<question>
+	<title>Where would you like it to run?</title>
+	<answer>
+		<title>Home PC</title>
+		<tag>_home_pc</tag>
+	</answer>
+	<answer>
+		<title>Server</title>
+		<tag>_server</tag>
+	</answer>
+	<answer>
+		<title>Embedded System</title>
+		<tag>embedded</tag>
+	</answer>
+	<answer>
+		<title>Real Time System</title>
+		<tag>real_time_system</tag>
+	</answer>
+	<answer breaking="breaking">
+		<title>Hacking or some risky stuff</title>
+		<tag>hacking</tag>
+	</answer>
+</question>
+
+<!-- Home PC group -->
+<question-group includeIf="_home_pc">
+	<question>
+		<title>Which of these stuff you definetly will do? Select one closest to you.</title>
+		<answer>
+			<title>Serious document work in apps like Word or Excel</title>
+			<tag>_docs</tag> <!-- Tags beginning with "_" are useful for "if" conditions. They won't be used for choosing answers. -->
+		</answer>
+		<answer breaking="breaking">
+			<title>Using windows-only software (select this only if you know what it means)</title>
+			<tag>windows</tag>
+		</answer>
+		<answer breaking="breaking">
+			<title>Playing AAA games</title>
+			<tag>windows</tag>
+		</answer>
+		<answer>
+			<title>Nothing</title>
+		</answer>
+	</question>
+	<question includeIf="_docs">
+		<title>Do you use Microsoft Office specific stuff?</title>
+		<answer breaking="breaking">
+			<title>Yes, like VBA, specific formatting or something else.</title>
+			<tag>windows</tag>
+		</answer>
+		<answer>
+			<title>No</title>
+		</answer>
+	</question>
+	<question>
+		<title>Do you like to configure your system?</title>
+		<answer>
+			<title>No, I want to install and use</title>
+			<tag>zero_configuration</tag>
+		</answer>
+		<answer>
+			<title>If it's not too hard</title>
+			<tag>moderate_configuration</tag>
+		</answer>
+		<answer>
+			<title>Yes, I need to be able to configure everything the way I like. Even if I need to do nerdy stuff.</title>
+			<tag>nerd_configuration</tag>
+		</answer>
+	</question>
+	<question>
+		<title>Would you buy a hardware just to use an OS?</title>
+		<answer breaking="breaking">
+			<title>Yes, if the OS is really good.</title>
+			<tag>mac</tag>
+		</answer>
+		<answer>
+			<title>What? No!</title>
+		</answer>
+	</question>
+	<question>
+		<title>What about your PC performance?</title>
+		<answer>
+			<title>It's really bad, literally a potato or 10+ y.o.</title>
+			<tag>low_spec</tag>
+		</answer>
+		<answer>
+			<title>It's bad, but not that bad</title>
+			<tag>low_moderate_spec</tag>
+		</answer>
+		<answer>
+			<title>Naah, it's fine or better</title>
+		</answer>
+	</question>
+	<question>
+		<title>Do you need to use later software?</title>
+		<answer>
+			<title>No, I get it and forget it</title>
+		</answer>
+		<answer>
+			<title>I use only stable versions</title>
+			<tag>stable_software</tag>
+		</answer>
+		<answer>
+			<title>Yes, but only if its stable for daily use</title>
+			<tag>daily_use_software</tag>
+		</answer>
+		<answer>
+			<title>Yes. If it will hurt stability, I'll read docs.</title>
+			<tag>kinda_unstable_software</tag>
+		</answer>
+		<answer>
+			<title>Yes, I need to be at bleeding edge</title>
+			<tag>unstable_software</tag>
+		</answer>
+	</question>
+	<question>
+		<title>DEB, RPM or Pacman?</title>
+		<answer>
+			<title>DEB</title>
+			<tag>deb</tag>
+		</answer>
+		<answer>
+			<title>RPM</title>
+			<tag>rpm</tag>
+		</answer>
+		<answer>
+			<title>pacman</title>
+			<tag>pacman</tag>
+		</answer>
+		<answer>
+			<title>src!</title>
+			<tag>src</tag>
+		</answer>
+		<answer>
+			<title>I don't know or care</title>
+			<tag>_package_idk</tag>
+		</answer>
+	</question>
+	<question includeIf="src _package_idk">
+		<title>Are you into BSD?</title>
+		<answer breaking="breaking">
+			<title>Yes!</title>
+			<tag>bsd</tag>
+			<insert-question id="1" />
+		</answer>
+		<answer>
+			<title>No</title>
+		</answer>
+	</question>
+</question-group>
+
+<!-- Server group -->
+<question-group includeIf="_server">
+	<question>
+		<title>Do you need troubles?</title>
+		<answer breaking="breaking">
+			<title>Yes</title>
+			<tag>windows</tag>
+		</answer>
+		<answer>
+			<title>No</title>
+		</answer>
+	</question>
+	<question>
+		<title>Are you tired of linux?</title>
+		<answer>
+			<title>Yes</title>
+			<tag>bsd</tag>
+		</answer>
+		<answer>
+			<title>No</title>
+			<tag>server_linux</tag>
+		</answer>
+	</question>
+</question-group>
+
+<!-- Real Time and Embedded group -->
+<question includeIf="embedded">
+	<title>Idunno lol, I've got only the list</title>
+	<answer>
+		<title>Ok, show it</title>
+		<tag>embedded</tag>
+	</answer>
+</question>
+
+</problem>

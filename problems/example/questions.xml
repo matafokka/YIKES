@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem> <!-- This is a root element. It can be called however you want. -->
+
+<name>Example</name> <!-- This is a name of the problem that will be displayed in program -->
+<description>Example problem</description> <!-- This is a description of the problem -->
+
+<question> <!-- This is a question.  -->
+	<title>What seems to be the problem, sir?</title> <!-- Question should have a title -->
+	<!--
+		Questions should have at least one answer.
+		You can put as many answers as you want.
+		User can select only one answer for the question.
+	-->
+	<answer>
+		<title>Answer 1</title> <!-- Answers also should have a title -->
+		<!--
+			Questions can have zero or more tags.
+			All chosen tags will be accounted when program will compute results.
+			A result will be valid ONLY if it contains ALL chosen tags.
+			
+			Tags are case-dependent. It means that tag "one" is equal to "one" and not equal to: "One", "oNe", "onE", etc.
+			Tags shouldn't contain spaces, tabs, line breaks, commas and quotes. But if your CSV syntax supports these symbols, you can include them.
+		-->
+		<tag>one</tag>
+		<tag>two</tag>
+		<!--
+			Tags starting with "_" won't be accounted when program will compute results.
+			These tags are useful for conditional display of the questions (see text below).
+		-->
+		<tag>_internal_tag</tag>
+	</answer>
+	<!--
+		This answer doesn't have any tags.
+		It's useful for answers like "I don't know" or passing to the next question.
+	-->
+	<answer>
+		<title>Answer 2</title>
+	</answer>
+	<!--
+		This answer contains "breaking" property.
+		It means that if user checks this answer, no further questions will be asked, and program will start computing results.
+		It's useful when all the needed information has been gathered, so there is no need in asking more questions.
+
+		This property should be equal to anything, even an empty string.
+	-->
+	<answer breaking="breaking">
+		<title>Answer 3. This will compute results immediatly.</title>
+		<tag>sample_tag</tag>
+	</answer>
+</question>
+
+<!--
+	This is a question groups. It groups all nested questions.
+	A question can contain one or more questions.
+	A question group is useful for displaying multiple questions on same condition.
+-->
+<question-group>
+	<question>
+		<title>So there is a problem...</title>
+		<answer>
+			<title>Yes</title>
+			<tag>_yes</tag>
+		</answer>
+		<answer>
+			<title>Kinda</title>
+			<tag>kinda</tag>
+		</answer>
+		<answer breaking="breaking">
+			<title>No</title>
+		</answer>
+	</question>
+</question-group>
+
+<!--
+	This question contains "includeIf" property that is equal to list of tags separated by a space.
+	It means that this question will be displayed only if user have chosen at least one of given tags.
+
+	Value of this property should contain at least one tag. Tags should be separated by one or more spaces.
+-->
+<question includeIf="_internal_tag _yes">
+	<title>You have choose "Answer 1" or "Yes" earlier.</title>
+	<answer>
+		<title>Yes, you're so smart!</title>
+	</answer>
+</question>
+
+<!--
+	This question contains "excludeIf" property that is equal to list of tags separated by a space.
+	It means that this question will NOT be displayed only if user have chosen at least one of given tags.
+
+	Value of this property should contain at least one tag. Tags should be separated by one or more spaces.
+-->
+<question excludeIf="_yes">
+	<title>I've been thinking... You actually haven't choose "Yes".</title>
+	<answer>
+		<title>OMG!</title>
+	</answer>
+</question>
+
+<!--
+	Question groups also can have "includeIf" and "excludeIf" properties.
+	
+	Moreover, these tags can be combined in both questions and question groups.
+	A question will be:
+		- displayed if "includeIf" condition has been satisfied.
+		- discarded if "excludeIf" condition has been satisfied.
+	"includeIf" is preceeding over "excludeIf".
+-->
+<question-group includeIf="_internal_tag" excludeIf="_yes">
+	<question>
+		<title>Oh! Actually, you have choose only "Answer 1"!</title>
+		<answer breaking="breaking">
+			<title>Yes!</title>
+		</answer>
+		<answer>
+			<title>No</title>
+			<tag>liar</tag>
+		</answer>
+	</question>
+</question-group>
+
+<!-- "includeIf" is preceeding over "excludeIf" in any case. -->
+<question excludeIf="_internal_tag" includeIf="_yes">
+	<title>Oh! Actually, you have choose only "Yes"!</title>
+	<answer breaking="breaking">
+		<title>Yes!</title>
+	</answer>
+	<answer>
+		<title>No</title>
+		<tag>liar</tag>
+	</answer>
+</question>
+
+</problem>
