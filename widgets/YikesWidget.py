@@ -102,7 +102,13 @@ class YikesWidget(QWidget):
 		
 		# Create answers
 		self.buttonGroup = QButtonGroup()
-		for answer in element.findall("answer"):
+		answers = element.findall("answer")
+
+		if len(answers) == 0:
+			self.showResults()
+			return
+
+		for answer in answers:
 			isBreaking = True
 			if answer.get("breaking") == None:
 				isBreaking = False
