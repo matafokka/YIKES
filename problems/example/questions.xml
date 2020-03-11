@@ -7,14 +7,15 @@
 <question> <!-- This is a question.  -->
 	<title>What seems to be the problem, sir?</title> <!-- Question should have a title -->
 	<!--
-		Questions should have at least one answer.
+		Question should have at least one answer.
 		You can put as many answers as you want.
+		If there are no answers, program will compute results immediately.
 		User can select only one answer for the question.
 	-->
 	<answer>
 		<title>Answer 1</title> <!-- Answers also should have a title -->
 		<!--
-			Questions can have zero or more tags.
+			Answers can have zero or more tags.
 			All chosen tags will be accounted when program will compute results.
 			A result will be valid ONLY if it contains ALL chosen tags.
 			
