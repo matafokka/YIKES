@@ -21,7 +21,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QVBoxLayout, QSc
 from PyQt5.QtGui import QIcon
 from widgets import YikesPreview, removeProblem
 from pathlib import Path
-from sys import argv
+from sys import argv, exit
 import xml.etree.ElementTree as ET
 import os.path
 
@@ -36,9 +36,6 @@ class MainWindow(QScrollArea):
 		# Parse problems
 		layout = QVBoxLayout()
 		layout.setContentsMargins(0, 0, 0, 0)
-
-		#addButton = QPushButton("Create new problem")
-		#layout.addWidget(addButton)
 
 		problemsPath = Path(os.path.dirname(os.path.abspath(__file__)) + "/problems/")
 		for problem in os.listdir(problemsPath):
