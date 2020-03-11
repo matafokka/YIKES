@@ -11,28 +11,27 @@ Program will ask you a few questions, you should answer to all of them.
 At the end, program will show you your results.
 
 # How it works?
-This is a rule-based system where each result is associated with a set of tags. That makes a full rule.
-
+1. This is a rule-based system where each result is associated with a set of tags. That makes a full rule.
 1. When user answers question, they "chooses" tags.
 1. After all questions has been answered, program goes through each results and checks if it contains all "chosen" tags.
-1. If it does, than the result will be presented to the user.
-1. If it doesn't, than the result is dismissed.
+1. If it does, the result will be presented to the user.
+1. If it doesn't, the result is dismissed.
 
 # How do I install it?
 In order to run this program, you'll need to install following stuff:
 1. [Python 3 interpreter](https://www.python.org/)
-1. PyQt5. You can download it from repos of your distro or run: `pip install PyQt5`. The last way is prefered for Windows.
+1. PyQt5. You can download it from repos of your distro or run: `pip install PyQt5`. The last way is preferred for Windows.
 
 Then:
 1. Download and extract the source code.
 1. `cd` to the extracted files.
-1. Run `python yikes.py`
+1. Run `python yikes.py`.
 
 # How do I create my own problems?
 Check problems/example/ directory.
 
 There's ReadMe.txt explaining problem's structure, but anyways:
-* questions.xml	-- XML file containing questions for the user.
-* results.csv		-- CSV file containing answers.
+* `questions.xml` - XML file containing questions for the user.
+* `results.csv` - CSV file containing answers.
 
 These files provides full tutorial with examples and everything, so you could start creating in almost no time!
