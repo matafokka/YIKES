@@ -18,7 +18,12 @@ class YikesPreview(QWidget):
 		if description == None:
 			description = "No description available"
 
-		self.yikesWidget = YikesWidget(root, resultsCsv)
+		try:
+			self.yikesWidget = YikesWidget(root, resultsCsv)
+		except ValueError:
+			self.deleteLater()
+			return
+			
 		self.yikesWidget.setWindowTitle("YIKES - " + name)
 		self.yikesWidget.setWindowIcon(icon)
 
@@ -35,13 +40,11 @@ class YikesPreview(QWidget):
 		# Add buttons
 		self.startButton = QPushButton("Start")
 		self.startButton.clicked.connect(self.yikesWidget.show)
-		self.editButton = QPushButton("Edit")
 		self.deleteButton = QPushButton("Delete")
 		self.deleteButton.clicked.connect(lambda: self.removeProblem(os.path.normpath(resultsCsv + "/..")))
 
 		buttonsLayout = QHBoxLayout()
 		buttonsLayout.addWidget(self.startButton)
-		#buttonsLayout.addWidget(self.editButton)
 		buttonsLayout.addWidget(self.deleteButton)
 
 		layout.addLayout(buttonsLayout)

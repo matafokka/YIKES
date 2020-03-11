@@ -6,7 +6,10 @@ from .createHeading import createHeading
 
 class YikesWidget(QWidget):
 	"""Widget that actually solves the problem
+	Constructor throws:
+		ValueError -- when there are no questions in given root
 	"""
+
 	def __init__(self, root: ET.Element, resultsCsv: str):
 		super().__init__()
 		self.resultsCsv = resultsCsv
@@ -34,6 +37,10 @@ class YikesWidget(QWidget):
 
 					self.questions.append(question)
 			elif child.tag == "question": self.questions.append(child)
+
+		# If there are no questions, don't even show the widget.
+		if len(self.questions) == 0:
+			raise ValueError
 
 		# Compose UI
 		widget = QWidget()
