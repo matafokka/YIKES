@@ -20,7 +20,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QVBoxLayout, QScrollArea, QFrame, QPushButton
 from PyQt5.QtGui import QIcon
 from widgets import YikesPreview, removeProblem
-from pathlib import Path
 from sys import argv, exit
 import xml.etree.ElementTree as ET
 import os.path
@@ -37,9 +36,9 @@ class MainWindow(QScrollArea):
 		layout = QVBoxLayout()
 		layout.setContentsMargins(0, 0, 0, 0)
 
-		problemsPath = Path(os.path.dirname(os.path.abspath(__file__)) + "/problems/")
+		problemsPath = os.path.dirname(os.path.abspath(__file__)) + "/problems/"
 		for problem in os.listdir(problemsPath):
-			pPath = str(problemsPath) + "/" + problem
+			pPath = problemsPath + "/" + problem
 			questionFile = pPath + "/questions.xml"
 			resultsFile = pPath + "/results.csv"
 			try:
